@@ -1,0 +1,32 @@
+Howto WebRTC!
+
+WebRTC, pour 'Real Time Communication' a pour but de faciliter la communication en temps réel pour les Technos web.
+Développé par google, maintenant accessible en open-source et intégré dans les plus grands navigateurs libre:
+- chrome
+- firefox
+- opera
+(IE sucks)
+
+C'est une techno qui s'appuie principalement sur une API javascript côté navigateur et qui a 3 grandes fonctionnalités:
+- Accés et acquisition des flux Audios/Vidéos
+- Permet d'établir une connection entre pair pour l'échange des flux A/V
+- On peut aussi communiquer des données arbitraires structurés comme on le souhaites
+
+Cela se traduit par 3 principales fonctions:
+- getUserMedia: Accés à la webCam et au micro
+- RTCPeerConnection: Etablit une connection entre 2 pair
+- RTCDataChannel: Communication de donnée arbitraire
+
+Toutefois pour établir la connexion à travers Internet malgré le NAT, on a besoin d'un serveur STUN (Session Traversal Utilities for NAT).
+Il en existe des publics (dont celui de google utilisé dans l'exemple FLASK).
+
+On a aussi besoin d'un serveur de "signalling" pour échanger les infos entre 2 navigateurs pour qu'ils se mettent en peer2peer.
+C'est le but du serveur python3 'signalling_serve.py'.
+
+Use Case FLASK:
+- lancer signalling/signalling_serve.py
+- dans le rep room, lancer flask/index.py
+
+dans un navigateur faites:
+- 1 onglet sur localhost:5000/room/1
+- un deuxième onglet sur localhost:5000/room/1

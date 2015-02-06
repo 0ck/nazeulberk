@@ -1,0 +1,59 @@
+Sujet naheulbeuk
+
+------------
+L'objectif est de faire un Virtual Tabletop RPG (RPG assisté par ordinateur) dans la même veine de roll20.net mais spécialisé pour
+le donjon de naheulbeuk.
+
+Quelques remarques:
+- contrairement aux autres projet, ici on vous fournis l'ensemble des régles en tant que document métier.
+Vous allez vites comprendre que cela représente un volume de texte important et qu'il faut faire le tri pour le portage des régles.
+Les régles consituent l'essentiel du sujet.
+- En faites c'est à vous de faire votre cahier des charges dans un périmètre relativement large. Même si on ne vous demande pas de le rendre
+vous devez mettre vos idées aux claires quelque part pour ne pas vous perdre.
+
+Techniques:
+- Modéle de donnée avec ORM (SQLAlchemy + sqlite). Les étudiants doivent présenter un modéle avec : account, avatar, race, class, competences, monster, item...
+- microframework avec Flask
+- Module de visio-conf au minima pour le MJ (Maitre du jeu) en Video/Audio et optionnelement pour les joueurs, via WebRTC (technologie HTML5).
+
+
+Les interfaces...
+
+Sur l'interface principale:
+- On peut se connecter en tant que joueur
+- On peut se connecter en tant que MJ
+- On peut créer son avatar (joueur)
+- On peut créer des PNJs (MJ), des Trésors, des pages de Quêtes
+- Le MJ peut créer une session de jeu et inviter les joueurs à le rejoindre
+- Les joueurs peuvent rejoindre une session
+
+Un virtual Tabletop RPG est un chat spécialisé:
+- On peut y voir le MJ en audio/video.
+- Tous les joueurs s'y connecte et sont identifié comme dans une appli chat classique (avec zone Public et Message Privé possible).
+- le MJ administre la room. Il peut notament n'envoyer son flux audio qu'à 1 seul ou sous-groupe de joueur pour les aparthés.
+- Une zone de rendu 2D (square ou hexagone) permet un rendu de la scéne où sont positionné les avatars des joueurs:
+    * soit c'est une image choisi par le MJ (plan de ville etc...)
+    * soit un mode grille (square ou hexa) pour les combats
+- Les régles de combats sont implémentés (tout ou partiellement) via l'interface. Le jets de dés, le calcul des dégâts etc... se font automatiquement
+- L'interface peux être en mode viello (POST/GET) ou plus moderne (HTML5).
+- Leur fiche de personnage est consultable par le MJ ou par le joueur (le joueur consulte seulement sa fiche).
+- Le MJ peut déplacer tous le monde de maniére libre, le joueur seulement sont avatar en case par case si le MJ l'autorise.
+
+Bonus Full visio:
+- les joueurs sont aussi en visio
+
+Bonus Assets:
+- vous avez créer vos propres assets pour le jeux et ils sont beaux.
+
+Bonus Régles:
+- Le support des régles est trés fouillés et complets (sorts).
+
+Bonus Fog of war:
+- zone rendu 2D hypermoderne avec gestion des zones d'ombres (pour les furieux)
+
+Autre bonus à voir et à discuter pendant les ateliers...
+
+Critères:
+L'évaluation sera faites principalement (et dans l'ordre des priorités) sur:
+1)- la cohérence fonctionnel. Peux t'on y jouer un scénarios complet? Le sous ensembles de régles porté suffit il pour que cela soit fun?
+2)- la maitrise technique et la qualité du rendu (language, technos, design)

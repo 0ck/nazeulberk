@@ -1,0 +1,61 @@
+*Grudu, barbare niv. 8
+    
+    Xp 2900
+    
+    COU 12+1(épée)+1(casque)                            = 14
+    INT 8                                               = 8
+    CHA 9+1(épée)+1(plastron)                           = 11
+    AD  11                                              = 11
+    FO  13+2(plastron)+1(n2)+1(n4)+1(n6)+1(n8)          = 19
+    
+    ATT 9-2(épée)+1(n3)+1(n5)+1(n7)                     = 10 -> 2D+11
+    PRD 9-2(épée)                                       = 7
+    PR  4(plastron)+1(casque)                           = 5
+    EV  35+4(n2)+4(n3)+4(n4)+5(n5)+4(n6)+4(n7)+4(n8)    = 64
+
+    Epee 2 mains d'artisans renomé  2D+4+7(force) ATT-2/PRD-2   COU+1, CHA+1
+    plastron cuir luxe+2            PR 4    CHA+1 FO+2
+    Casque confort                  PR 1    COU+1
+
+    comp: +2
+        origine: AMBIDEXTRIE, CHERCHER DES NOISES, SENTIR DES PIEDS, TETE VIDE
+        metier: ARME DE BOURRIN, BOURRE PIF
+        niv 3:
+        niv 6:
+    Spécials: J'ARRACHE TA TETE, CHARGE DU GROS BOURRIN, DOUBLE ATTAQUE, OUARGLAH
+
+    Desc:
+    conan c'est son cousin, non?
+    
+
+*Romuald Le flambloyant, barde/humain niv. 8
+    
+    Xp 2950
+    
+    COU 10+2(dague)+1(Arc)                              = 13
+    INT 11                                              = 11
+    CHA 13+2(dague)+1(n2)+1(n8)+2(Arc)                  = 19
+    AD  12+1(n4)+1(n6)+3(Arc)                           = 16
+    FO  10                                              = 10
+    
+    ATT 8+2(dague)+1(n3)+1(n7)+1(Ad>12)                 = 13 -> 1D+3
+    PRD 10-2(dague)+1(n5)                               = 9
+    PR  6(tunique)                                      = 6
+    EV  30+3(n2)+4(n3)+5(n4)+5(n5)+6(n6)+3(n7)+4(n8)    = 60
+    
+    Dague durandil                                          1D+3    PRD-2  ATT+2 CHA+2 COU+2
+    Arc Long de Yémisold +2                                 1D+6    AD+3 CHA+2 COU+1
+    10 fleche blazing fire                                  +1 + 1D feu
+    30 fleche elfe sylvain meurtriere                       +3
+    Vêtement tunique/pantalon du fourbe version ROUGE       CHA+2 ATT+2 AD+1
+
+    comp: +2
+        métier: ATTIRE LES MONSTRES, CHEVAUCHER, ERUDITION, FARIBOLES, JONGLAGE&DANSE, NAIVETE TOUCHANTE
+        niv 3: TIRER CORRECTEMENT
+        niv 6: PREMIERS SOINS
+    Spécials: HEBERGEMENT GRATOS, FOULE CAPTIVE, DECONCENTRATION, HEROS CHANTANT
+
+    Desc:
+    Casse pied tout de rouge vétu, affable et joueur.
+
+    Possède une relique du dieux picrate "la dive bouteille", capacité de rendre "ivre" tous, sauf son porteur qui restera toujours conscient...

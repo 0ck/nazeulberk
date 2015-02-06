@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>WebRTC Example</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+    <script src="{{ url_for('static', filename='js/webrtc-adapter.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/mj.js') }}"></script>
+</head>
+<body>
+    {{room_id}}
+    <div class="container">
+        <div class="videos">
+            <div class="localvideos">
+                <video id="local" autoplay muted></video>
+                LOCAL
+            </div>
+        </div>
+    </div>
+    <footer>
+        <span id="status" class="small"></span>
+        <span id="streaming" class="small"></span>
+    </footer>
+</body>
+</html>
