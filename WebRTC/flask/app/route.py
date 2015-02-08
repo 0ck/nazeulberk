@@ -25,6 +25,10 @@ def enter_joueur(room_id):
 def login():
     return loginCtrl.login()
 
+@app.route('/zheros/', methods=('GET', 'POST'))
+def zheros():
+    return render_template('zheros.html')
+
 @app.route("/")
 def main():
     return render_template('index.html')
