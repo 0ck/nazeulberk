@@ -2,6 +2,7 @@ from app import app
 from flask import Flask
 from flask import render_template
 from py.login import loginCtrl
+from py.zheros import zherosCtrl
 
 @app.route("/room/<int:room_id>")
 def enter_room(room_id):
@@ -27,7 +28,7 @@ def login():
 
 @app.route('/zheros/', methods=('GET', 'POST'))
 def zheros():
-    return render_template('zheros.html')
+    return zherosCtrl.zheros()
 
 @app.route("/")
 def main():
