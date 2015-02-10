@@ -117,4 +117,3 @@ function fail() {
     //state.addClass('error');
     console.error.apply(console, arguments);
 }
-
