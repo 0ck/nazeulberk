@@ -13,9 +13,10 @@ def login():
     name = form.name.data
     pwd = form.pwd.data
     values = form.data
+    session['login'] = "aa"
     if form.validate_on_submit():
         for a in dbSession.query(dbClass.Account):
         	if repr(a.login) == repr(name):
         		print(repr(a.login))
-        		
-    return render_template('login.html', form=form)
+
+    return render_template('login.html', form=form, login=session['login'])

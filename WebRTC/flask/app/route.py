@@ -1,5 +1,5 @@
 from app import app
-from flask import Flask
+from flask import Flask, session
 from flask import render_template
 from py.login import loginCtrl
 from py.zheros import zherosCtrl
@@ -12,7 +12,7 @@ def enter_room(room_id):
 
 @app.route("/mj/<int:room_id>")
 def enter_mj(room_id):
-    txt = render_template('mj.html', room_id=room_id)
+    txt = render_template('mj.html', room_id=room_id, login=session['login'])
     print(txt)
     return txt
 
