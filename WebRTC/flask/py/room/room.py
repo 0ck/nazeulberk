@@ -41,8 +41,6 @@ def get_client_room(client):
 
 def isCommand(client, server, message):
 	if(message[0] == "/" or message[0] == "!"):
-		alertCmd = ("Client (%d) tape une commande" % client['id'])
-		message_to_room(client, server, alertCmd)
 		executeCommand(client, server, message)
 		return 1
 	return 0
@@ -53,7 +51,7 @@ def executeCommand(client, server, message):
 	if(commandName[0] == "/combat"):
 		combat_Action(client, server, message)
 	else:
-		message_to_room(client, server, "<span style='color:red'> Cette commande n'existe pas</span>")
+		server.send_message(client, "<span style='color:red'> Cette commande n'existe pas</span>")
 
 def combat_Action(client, server, message):
 	message_to_room(client, server, "Lancement d'un combat par le client {%d}" % client['id'])
