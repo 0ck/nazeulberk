@@ -16,6 +16,8 @@ def login():
     session['login'] = ""
     if form.validate_on_submit():
         for a in dbSession.query(dbClass.Account):
-        	if repr(a.login) == repr(name):
-        		session['login'] = repr(a.login)
+            if repr(a.login) == repr(name):
+                session['login'] = repr(a.login)
+                message = 'vous etes connecte'
+                return render_template('index.html', message=message)
     return render_template('login.html', form=form, login=session['login'])

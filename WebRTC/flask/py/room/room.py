@@ -1,10 +1,9 @@
 from websocket import WebSocketsServer
-
+from flask import Flask, session
+from flask import render_template
 # Called for every client connecting (after handshake)
 def new_client(client, server):
-   print("Un nouveau client arrive sur le serveur IDENTIFIANT -> %d" % client['id'])
-   server.send_message_to_all("<span style='color: red'>Un nouveau client arrive sur le serveur IDENTIFIANT -></span> %d" % client['id'])
-
+   	server.send_message_to_all("<span style='color: red'>Un nouveau client arrive sur le serveur IDENTIFIANT -></span> %d" % client['id'])
 
 # Called for every client disconnecting
 def client_left(client, server):
