@@ -3,6 +3,8 @@ from flask import render_template
 from py.model import dbClass
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
+from array import array
+from py.zheros import createHeroForm
 
 engine = create_engine('sqlite:///naheul.db')
 dbSession = Session(engine)
@@ -16,8 +18,6 @@ def zheros():
 		message = "Vous devez vous connecter pour acceder a cette page : zHeros"
 		return render_template('index.html', message=message)
 	else:
-	    for race in dbSession.query(dbClass.Race):
-	        print(repr(race.name))
-	    for metier in dbSession.query(dbClass.Metier):
-	        print(repr(metier.name))
-	    return render_template('zheros.html')
+		DataArray = createHeroForm.HeroCreate()
+		print(DataArray[0])
+		return render_template('zheros.html', data=DataArray)
