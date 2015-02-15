@@ -3,6 +3,7 @@ from flask import Flask, session
 from flask import render_template
 from py.login import loginCtrl
 from py.zheros import zherosCtrl
+from py.createhero import createHeroCtrl
 
 @app.route("/room/<int:room_id>")
 def enter_room(room_id):
@@ -36,6 +37,11 @@ def login():
 def zheros():
     return zherosCtrl.zheros()
 
+@app.route('/newhero/', methods=('GET', 'POST'))
+def newhero():
+    return createHeroCtrl.new()
+
 @app.route("/")
 def main():
+    session['login'] = ""
     return render_template('index.html')
