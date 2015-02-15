@@ -42,7 +42,7 @@ $(document).ready(function(){
       var name = entry.name;
       var id = entry.id;
 
-      $('tbody').html($('tbody').html() + "<tr><td>1</td><td>Salle "+ name + "</td><td>1 Places</td><td><a href='/room/"+ id +"'>Rejoindre</a></td></tr>");
+      $('tbody').html($('tbody').html() + "<tr><td>" + id + "</td><td>Salle "+ name + "</td><td>1 Places</td><td><a href='/room/"+ id +"'>Rejoindre</a></td></tr>");
     });
     setTimeout(generateRoomList, 30000);
   }

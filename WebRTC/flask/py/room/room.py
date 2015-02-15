@@ -13,15 +13,16 @@ def new_client(client, server):
   server.send_message_to_all("<span style='color: red'>Le client  arrive sur le serveur  -></span> %d" % client['id'])
 
 
-
-
+def client_left(client, server):
+  print("client disconnected")
+  del clients[client['id']]
 
   # Called when a client sends a message
 def message_received(client, server, message):
-  print("Client(%d) said: %s" % (client['id'], message))
+  print("Client said: %s" % (message))
   if(isCommand(client, server, message)):
     return
-  message_to_room(client, server, "<span style='color: red'>Client(%d) said: %s </span>" % (client['id'], message))
+  message_to_room(client, server, "Client said: %s" % (message))
 
 
 def message_to_room(client, server, message):
@@ -69,13 +70,13 @@ def roll(client, server, number, value, malus=0):
     MaxValue = (value2 * number)
     randomInt = random.randint(minValue, MaxValue)
     message_to_room(client, server, "%d" % randomInt)
-    #message_to_room(client, server, "<span style='color: red'>Client(%d) fait un jet de D, résultat -> %d</span>" % (client['id'], randomInt)) 
+    message_to_room(client, server, "<span style='color: red'>Client(%d) fait un jet de D, résultat -> %d</span>" % (client['id'], randomInt)) 
   # else:
   #   server.send_message(client, "<span style='color:red'> Veuillez utiliser la syntaxe '/roll nb_dès D*puissance_des_dès*' exemple pour un 8 jet de dès à 6 faces : /roll 8 D6</span>")
 
-def create_room(client, name, server):
+def create_room(client, name, server, slot=1):
   new_index = get_index_maxroom() + 1
-  new_room = {'id': new_index, 'name' : name}
+  new_room = {'id': new_index, 'name' : name, 'mj' : client, 'client' : '', 'slot': slot}
   rooms.append(new_room)
   
   #list_all_rooms(client, server)
@@ -102,5 +103,6 @@ def join_channel(client, id):
 PORT=13254
 server = WebSocketsServer(PORT)
 server.set_fn_new_client(new_client)
+server.set_fn_client_left(client_left)
 server.set_fn_message_received(message_received)
 server.run_forever()

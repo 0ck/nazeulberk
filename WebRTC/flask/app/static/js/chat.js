@@ -36,6 +36,11 @@ $(document).ready(function(){
   $('#btn_send').click(function(){
     send_Message();
   });
+
+  $('#video_call').click(function(){
+    alert('ok');
+    init();
+  });
  
   $(document).keyup(function (e) {
     if (e.keyCode == 13) {
