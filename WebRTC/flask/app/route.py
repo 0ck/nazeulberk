@@ -4,6 +4,7 @@ from flask import render_template
 from py.login import loginCtrl
 from py.zheros import zherosCtrl
 from py.createhero import createHeroCtrl
+from py.hero import heroDetailCtrl
 
 @app.route("/room/<int:room_id>")
 def enter_room(room_id):
@@ -29,6 +30,10 @@ def enter_joueur(room_id):
     print(txt)
     return txt
 
+@app.route("/hero/<int:hero_id>")
+def hero_details(hero_id):
+    return heroDetailCtrl.herodetails(hero_id)
+
 @app.route('/login/', methods=('GET', 'POST'))
 def login():
     return loginCtrl.login()
@@ -43,5 +48,6 @@ def newhero():
 
 @app.route("/")
 def main():
-    session['login'] = ""
+    if session['login'] is None:
+            session['login'] = ""
     return render_template('index.html')

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+	
+	{% for data  in perso %}
+		<h1>Fiche du personnage {{ data.name }}</h1>
+    {% endfor %}
+    <ul>
+	  <li></span>Cou : {{ caracs.COU }}</li>
+	  <li></span>Cha : {{ caracs.CHA }}</li>
+	  <li></span>Ad : {{ caracs.AD }}</li>
+	  <li></span>Int : {{ caracs.INT }}</li>
+	  <li></span>Fo : {{ caracs.FO }}</li>
+	  <li></span>PV max : {{ caracs.PV_max }}</li>
+	  <li></span>Pv : {{ caracs.PV }}</li>
+	  <li></span>PM max : {{ caracs.PM_max }}</li>
+	  <li></span>PM : {{ caracs.PM }}</li>
+	  <li></span>Att : {{ caracs.AT }}</li>
+	  <li></span>Prd : {{ caracs.PRD }}</li>
+	  <li></span>Point du destin : {{ caracs.PointDestin }}</li>
+	  <li></span>Pieces d'or : {{ caracs.PO }}</li>
+	</ul>
+
+{% endblock %}
