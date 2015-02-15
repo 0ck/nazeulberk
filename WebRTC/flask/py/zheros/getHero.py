@@ -21,4 +21,4 @@ class getHero(Form):
 #	for metier in dbSession.query(dbClass.Metier):
 #		ArrayClasse[1][count] = {'name': metier.name}
 #		count = count + 1
-	Avatar = SelectField(u'Avatar', coerce=int)
+	Avatar = SelectField('Avatar', coerce=int)

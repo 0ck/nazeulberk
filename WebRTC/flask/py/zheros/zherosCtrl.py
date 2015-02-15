@@ -18,15 +18,15 @@ def zheros():
 		message = "Vous devez vous connecter pour acceder a cette page : zHeros"
 		return render_template('index.html', message=message)
 	else:
-		#login = str(session['login'])
-		#User = engine.execute('select * from Account where login = ' + login).first()
-		#idUser = str(User.id)
-		#Persos = engine.execute('select * from Avatar where acc_id = ' + idUser)
+		login = str(session['login'])
+		User = engine.execute('select * from Account where login = ' + login).first()
+		idUser = str(User.id)
+		persos = engine.execute('select * from Avatar where acc_id = ' + idUser)
 		#for perso in Persos:
 		#	idcarac = str(perso.carac_id)
 		#	Caracs = engine.execute('select * from Carac where id = ' + idcarac).first()
 		#	print(Caracs.COU)
 		#	return render_template('zheros.html', perso=perso.name, caracs=Caracs)
-		form = getHero.getHero()
-		form.Avatar.choices = [(g.id, g.name) for g in dbSession.query(dbClass.Avatar).order_by('name')]
-		return render_template('zheros.html', form=form)
+		#form = getHero.getHero()
+		#form.Avatar.choices = [(g.id, g.name) for g in dbSession.query(dbClass.Avatar).order_by('name')]
+		return render_template('zheros.html', persos=persos)

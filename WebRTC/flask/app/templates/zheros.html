@@ -5,16 +5,20 @@
 <center>
     <h1>Créer Votre personnage</h1>
 </center>
-<form>
     <h2>Selectionner un personnage {{perso}}:</h2>
-    <form method="POST" action="">
-	{% for subfield  in form %}
-        <tr>
-        	<td>{{ subfield.label }}</td><td>{{ subfield }}</td>
-            </br>
-        </tr>
+	{% for perso in persos %}
+	<div class="row">
+	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	      <img src="http://i73.servimg.com/u/f73/11/13/70/81/elfe0210.gif" alt="#">
+	      <div class="caption">
+	        <h3>{{ perso.name }}</h3>
+	        <p>Description/Stats</p>
+	        <p><a href="#" class="btn btn-primary" role="button">Jouer</a> <a href="#" class="btn btn-default" role="button">Détails</a></p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
     {% endfor %}
-    	<input type="submit" value="Choisir">
-	</form>
 <a class="btn btn-default" href="/newhero" role="button">Nouveau Hero</a>
 {% endblock %}
