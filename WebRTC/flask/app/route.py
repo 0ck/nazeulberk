@@ -5,12 +5,16 @@ from py.login import loginCtrl
 from py.zheros import zherosCtrl
 from py.createhero import createHeroCtrl
 from py.hero import heroDetailCtrl
+from py.roomClient import roomCtrl
+from py.persoselect import persoSelectCtrl
+
+@app.route("/perso/<int:id_perso>")
+def setperso(id_perso):
+    return persoSelectCtrl.set_session_perso(id_perso)
 
 @app.route("/room/<int:room_id>")
 def enter_room(room_id):
-    txt = render_template('room.html', room_id=room_id)
-    print(txt)
-    return txt
+    return roomCtrl.room(room_id)
 
 @app.route("/room/list/")
 def room_list():

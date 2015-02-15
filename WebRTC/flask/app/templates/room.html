@@ -7,8 +7,46 @@
 <div class="container">
         <div class="col-lg-12">
             <div class="col-lg-3">
-                <h2>Mage Dayknor</h2>
-                <h3>Level : 9</h3>
+                <h2>{{persoJoueur.name}}</h2>
+                  <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                  Détail sur le personnage
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Détail des statistiques de {{persoJoueur.name}}</h4>
+                      </div>
+                      <div class="modal-body">
+                        <ul>
+                          <li></span>Cou : {{ caracs.COU }}</li>
+                          <li></span>Cha : {{ caracs.CHA }}</li>
+                          <li></span>Ad : {{ caracs.AD }}</li>
+                          <li></span>Int : {{ caracs.INT }}</li>
+                          <li></span>Fo : {{ caracs.FO }}</li>
+                          <li></span>PV max : {{ caracs.PV_max }}</li>
+                          <li></span>Pv : {{ caracs.PV }}</li>
+                          <li></span>PM max : {{ caracs.PM_max }}</li>
+                          <li></span>PM : {{ caracs.PM }}</li>
+                          <li></span>Att : {{ caracs.AT }}</li>
+                          <li></span>Prd : {{ caracs.PRD }}</li>
+                          <li></span>Point du destin : {{ caracs.PointDestin }}</li>
+                          <li></span>Pieces d'or : {{ caracs.PO }}</li>
+                        </ul>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <h3>Level : {{persoJoueur.level}}</h3>
+                <h3>Exp : {{persoJoueur.exp}}</h3>
                 
                 <h3>Visio</h3>
                 <div class="visioconf">
