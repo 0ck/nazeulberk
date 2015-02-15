@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+	<h1>Ctrl New Hero</h1>
+	<form method="POST" action="">
+	{% for subfield  in form %}
+        <tr>
+        	<td>{{ subfield.label }}</td><td>{{ subfield }}</td>
+            </br>
+        </tr>
+    {% endfor %}
+    	<input type="submit" value="Créer">
+	</form>
+{% endblock %}

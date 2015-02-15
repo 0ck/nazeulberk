@@ -6,11 +6,15 @@
     <h1>Créer Votre personnage</h1>
 </center>
 <form>
-    <h2>Choisir une race :</h2>
-     {% for item in data %}
-            <input type="checkbox" name="modList" value={{item}}>{{item}}<br>
+    <h2>Selectionner un personnage {{perso}}:</h2>
+    <form method="POST" action="">
+	{% for subfield  in form %}
+        <tr>
+        	<td>{{ subfield.label }}</td><td>{{ subfield }}</td>
+            </br>
+        </tr>
     {% endfor %}
-    <button type="submit" class="btn btn-default">Submit</button>
-</form>
-	
+    	<input type="submit" value="Choisir">
+	</form>
+<a class="btn btn-default" href="/newhero" role="button">Nouveau Hero</a>
 {% endblock %}
