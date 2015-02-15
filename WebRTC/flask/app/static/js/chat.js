@@ -5,6 +5,7 @@ $(document).ready(function(){
  
   // Set event handlers.
   ws.onopen = function() {
+    ws.send('/join_channel ' + $('#room_id').val())
     output("<span style='color: green'>[CONSOLE]</span> Un nouveau client à rejoint la salle");
   };
  

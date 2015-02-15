@@ -10,6 +10,12 @@ def enter_room(room_id):
     print(txt)
     return txt
 
+@app.route("/room/list/")
+def room_list():
+    txt = render_template('room_board.html')
+    print(txt)
+    return txt
+
 @app.route("/mj/<int:room_id>")
 def enter_mj(room_id):
     txt = render_template('mj.html', room_id=room_id, login=session['login'])

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+{{room_id}}
+<script src="{{ url_for('static', filename='js/room_board.js') }}"></script>
+<div class="container">
+    <br /><br />
+    <div class="col-lg-7">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">
+
+                <h3 class="panel-title">Liste des parties :</h3>
+
+            </div>
+
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Numéro</th>
+                            <th>Nom de la salle</th>
+                            <th>Places restante</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        
+
+            
+        
+
+    </div>
+    <div class="col-lg-4">
+        <div class="panel panel-primary">
+
+            <div class="panel-heading">
+
+                <h3 class="panel-title">Création de partie</h3>
+
+            </div>
+
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>Nom de la partie</label>
+                    <input type="text" id="party_name" class="form-control" />
+                    <br />
+                    <label>Nombre de joueurs</label>
+                    <select class="form-control">
+                        <option name="value" value="1">1</option>
+                        <option name="value" value="1">2</option>
+                        <option name="value" value="1">3</option>
+                        <option name="value" value="1">4</option>
+                        <option name="value" value="1">5</option>
+                    </select>
+                    <br />
+                    <button class="btn btn-primary form-control" id="create_room">Créer partie</button>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+{% endblock %}

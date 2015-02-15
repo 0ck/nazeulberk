@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-{{room_id}}
 <script src="{{ url_for('static', filename='js/webrtc-adapter.js') }}"></script>
 <script src="{{ url_for('static', filename='js/room.js') }}"></script>
 <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+<input type="hidden" id="room_id" value="{{room_id}}" />
 <div class="container">
         <div class="col-lg-12">
             <div class="col-lg-3">
