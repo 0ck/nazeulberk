@@ -3,6 +3,7 @@ from array import array
 import random
 from flask import session
 import json
+
 clients = {}
 rooms = []
   # Called for every client connecting (after handshake)
@@ -70,13 +71,13 @@ def roll(client, server, number, value, malus=0):
     MaxValue = (value2 * number)
     randomInt = random.randint(minValue, MaxValue)
     message_to_room(client, server, "%d" % randomInt)
-    message_to_room(client, server, "<span style='color: red'>Client(%d) fait un jet de D, résultat -> %d</span>" % (client['id'], randomInt)) 
+    #message_to_room(client, server, "<span style='color: red'>Client(%d) fait un jet de D, résultat -> %d</span>" % (client['id'], randomInt)) 
   # else:
   #   server.send_message(client, "<span style='color:red'> Veuillez utiliser la syntaxe '/roll nb_dès D*puissance_des_dès*' exemple pour un 8 jet de dès à 6 faces : /roll 8 D6</span>")
 
 def create_room(client, name, server, slot=1):
   new_index = get_index_maxroom() + 1
-  new_room = {'id': new_index, 'name' : name, 'mj' : client, 'client' : '', 'slot': slot}
+  new_room = {'id': new_index, 'name' : name, 'slot' : slot}
   rooms.append(new_room)
   
   #list_all_rooms(client, server)
