@@ -52,6 +52,5 @@ def newhero():
 
 @app.route("/")
 def main():
-    if session['login'] is None:
-            session['login'] = ""
+    session['login'] = ""
     return render_template('index.html')
