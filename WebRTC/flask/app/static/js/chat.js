@@ -2,9 +2,14 @@ $(document).ready(function(){
   var ws;
   // Connect to Web Socket
   ws = new WebSocket("ws://localhost:13254/");
- 
+
+  function init_player(){
+    var id_perso = $('#persoID').val();
+    ws.send("/select_hero "+ id_perso);
+  }
   // Set event handlers.
   ws.onopen = function() {
+    init_player();
     ws.send('/join_channel ' + $('#room_id').val())
     output("<span style='color: green'>[CONSOLE]</span> Un nouveau client à rejoint la salle");
   };
@@ -38,7 +43,6 @@ $(document).ready(function(){
   });
 
   $('#video_call').click(function(){
-    alert('ok');
     init();
   });
  

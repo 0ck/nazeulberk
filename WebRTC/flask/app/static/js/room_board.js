@@ -7,7 +7,7 @@ $(document).ready(function(){
   // Set event handlers.
   ws.onopen = function() {
     output("Un nouveau client à rejoint la salle");
-    ws.send("/list_all_rooms ");
+    ws.send("/list_all_rooms");
   };
  
   ws.onmessage = function(e) {
@@ -41,15 +41,17 @@ $(document).ready(function(){
     json.forEach(function(entry){
       var name = entry.name;
       var id = entry.id;
-
-      $('tbody').html($('tbody').html() + "<tr><td>" + id + "</td><td>Salle "+ name + "</td><td>1 Places</td><td><a href='/room/"+ id +"'>Rejoindre</a></td></tr>");
+      var slot = entry.slot;
+      $('tbody').html($('tbody').html() + "<tr><td>" + id + "</td><td>Salle "+ name + "</td><td>" + entry.slot +" Places</td><td><a href='/room/"+ id +"'>Rejoindre</a></td></tr>");
     });
     setTimeout(generateRoomList, 30000);
   }
 
   $('#create_room').click(function(){
     var name = $('#party_name').val();
-    ws.send("/create_room "+ name);
+    var slot = $('#NBslot').val();
+    console.log(slot);
+    ws.send("/create_room "+ name + " " + slot);
   });
  
 });
