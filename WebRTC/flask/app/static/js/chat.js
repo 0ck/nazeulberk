@@ -15,9 +15,13 @@ $(document).ready(function(){
   };
  
   ws.onmessage = function(e) {
+    var data = e.data;
     // e.data contains received string.
-    console.log(e.data);
+    type = data[0]['type'];
+
     output("Message recu : " + e.data);
+    
+    generatePlayerList(data);
   };
  
   ws.onclose = function() {
@@ -65,5 +69,19 @@ $(document).ready(function(){
   function output(str) {
     $('.chatbox_container').html($('.chatbox_container').html() + "<p>"+ str +"</p>");
   }
- 
+  
+  function generatePlayerList(data)
+  {
+    console.log(data);
+    data[data.length] = "";
+    data[0] = "";
+    console.log(data);
+    data = JSON.parse(data);
+    console.log(data);
+    /*var html = $('.playerlist_container').html();
+    data.forEach(function(entry){
+      $('.playerlist_container').html(html + '<div class="col-lg-12 playerlist_container" style="margin-top : 10px"><div class="col-lg-3" style="padding: 20px"><div class="elem"><img src="azdeqs.jpg" width="100%" height="100px"/><div class="progress"><div class="progress-bar" role="progressbar" aria-valuenow="70"aria-valuemin="0" aria-valuemax="100" style="width:70%; background-color: red"><span >20/30 HP</span></div></div></div></div>');
+    });
+    setTimeout(generateRoomList, 30000);*/
+  }
 });

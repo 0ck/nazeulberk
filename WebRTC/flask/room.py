@@ -148,24 +148,20 @@ def list_player(client, server, id_room):
     if(i['id'] == id_room):
       for x in i['clientsID']:
         print(x)
-        tmp = {count : clients[x]}
-        tab.append(tmp)
-  message_to_room(client, server, "JSON : " + json.dump(tab))
+        personnage = prepareJson(clients[client['id']][2])
+        carac = prepareJson(clients[client['id']][3])
+        tab.append({'type' : 'list_player', 'carac' : carac, 'perso' : personnage})
+        #count = count + 1
+  message_to_room(client, server, json.dumps(tab))
 
-  #   print(i['id'])
-  #   if(i['id'] == id_room):
-  #     for test in i['clientsID']:
-  #       print(test)
-  #       print('FIND IT AHAHAHAH')
-  #       # tmp = {count : clients[test]}
-  #       # tab.append(tmp)
-  #       # count = count + 1
+def prepareJson(array):
+  data = {}
+  count = 0
+  for perso in array:
+    data.append(perso)
+    count = count + 1
 
-  # print("MESSAGE JSON = ")
-  # print(tab)
-  # message_to_room(client, server, "MESSAGE JSON = " + json.dumps(tab))
-
-
+  return data
 
 
 PORT=13254

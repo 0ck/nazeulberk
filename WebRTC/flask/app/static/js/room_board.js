@@ -42,7 +42,10 @@ $(document).ready(function(){
       var name = entry.name;
       var id = entry.id;
       var slot = entry.slot;
-      $('tbody').html($('tbody').html() + "<tr><td>" + id + "</td><td>Salle "+ name + "</td><td>" + entry.slot +" Places</td><td><a href='/room/"+ id +"'>Rejoindre</a></td></tr>");
+      if(slot > 0){
+        $('tbody').html($('tbody').html() + "<tr><td>" + id + "</td><td>Salle "+ name + "</td><td>" + entry.slot +" Places</td><td><a href='/room/"+ id +"'>Rejoindre</a></td></tr>");
+      }
+      
     });
     setTimeout(generateRoomList, 30000);
   }
