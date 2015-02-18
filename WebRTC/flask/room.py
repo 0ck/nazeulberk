@@ -23,8 +23,9 @@ def new_client(client, server):
 
 def client_left(client, server):
   print("client disconnected")
+  left_channel(client, server)
   del clients[client['id']]
-  left_channel(client)
+  
 
   # Called when a client sends a message
 def message_received(client, server, message):
@@ -119,12 +120,13 @@ def join_channel(client, server,  id):
   # rooms[id]['clientsID'].append(client['id'])
   #print(rooms)
 
-def left_channel(client):
+def left_channel(client, server):
   for i in rooms:
       for test in i['clientsID']:
         if(test == client['id']):
           i['clientsID'].remove(client['id'])
           i['slot'] = str(int(i['slot']) + 1)
+          list_player(client, server, i['id'])
 
 
 
@@ -143,7 +145,7 @@ def init_player(client, id_perso):
 def list_player(client, server, id_room):
   tab = []
   count = 0
-
+  print (id_room)
   for i in rooms:
     if(i['id'] == id_room):
       for x in i['clientsID']:
@@ -155,7 +157,7 @@ def list_player(client, server, id_room):
   message_to_room(client, server, json.dumps(tab))
 
 def prepareJson(array):
-  data = {}
+  data = []
   count = 0
   for perso in array:
     data.append(perso)
