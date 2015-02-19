@@ -29,6 +29,13 @@ def client_left(client, server):
 
   # Called when a client sends a message
 def message_received(client, server, message):
+  if(is_json(message)):
+    data = json.loads(message)
+    print(data['type'])
+    print('its a json')
+    if(data['type'] == "stats_Change"):
+      change_stats(client, data)
+    return
   #print("Client said: %s" % (message))
   if(isCommand(client, server, message)):
     return
@@ -48,12 +55,14 @@ def get_client_room(client):
       return clients[i][1]
 
 def isCommand(client, server, message):
-  if(message[0] == "/" or message[0] == "!"):
-    executeCommand(client, server, message)
-    return 1
+  if(len(message) > 0):
+    if(message[0] == "/" or message[0] == "!"):
+      executeCommand(client, server, message)
+      return 1
   return 0
 
 def executeCommand(client, server, message):
+
   commandName = message.split(' ')
   print(commandName[0])
   if(commandName[0] == "/combat"):
@@ -68,9 +77,11 @@ def executeCommand(client, server, message):
     join_channel(client, server, commandName[1])
   if(commandName[0] == "/select_hero"):
     init_player(client, commandName[1])
+  if(commandName[0] == "/mj"):
+    isGameMaster(client, server)
+  if(commandName[0] == "/mz"):
+    MJ_TOOL(client, server, clients[client['id']][1])
     #list_player(client, server, clients[client['id']][1])
-  else:
-    server.send_message(client, "<span style='color:red'> Cette commande n'existe pas</span>")
 
 def combat_Action(client, server, message):
   message_to_room(client, server, "Lancement d'un combat par le client {%d}" % client['id'])
@@ -89,9 +100,8 @@ def roll(client, server, number, value, malus=0):
 
 def create_room(client, name, server, slot=1):
   new_index = get_index_maxroom() + 1
-  new_room = {'id': new_index, 'name' : name, 'slot' : slot, 'clientsID' : []}
+  new_room = {'id': new_index, 'name' : name, 'slot' : slot, 'clientsID' : [], 'mj' : ''}
   rooms.append(new_room)
-  
   #list_all_rooms(client, server)
 
 def delete_room(id_room):
@@ -113,8 +123,11 @@ def join_channel(client, server,  id):
   clients[client['id']][1] = id
   for i in rooms:
     if(id == i['id']):
-      i['slot'] = str(int(i['slot']) - 1)
-      i['clientsID'].append(client['id'])
+      if(i['mj'] == ''):
+        i['mj'] = client['id']
+      else:
+        i['slot'] = str(int(i['slot']) - 1)
+        i['clientsID'].append(client['id'])
 
   list_player(client, server, id)
   # rooms[id]['clientsID'].append(client['id'])
@@ -122,11 +135,15 @@ def join_channel(client, server,  id):
 
 def left_channel(client, server):
   for i in rooms:
-      for test in i['clientsID']:
-        if(test == client['id']):
+    if(client['id'] == i['mj']):
+      i['mj'] = ''
+    print(rooms)
+    for test in i['clientsID']:
+      if(test == client['id']):
           i['clientsID'].remove(client['id'])
           i['slot'] = str(int(i['slot']) + 1)
           list_player(client, server, i['id'])
+          
 
 
 
@@ -138,8 +155,8 @@ def left_channel(client, server):
 def init_player(client, id_perso):
   persoJoueur = engine.execute('SELECT * FROM Avatar WHERE id = ' + id_perso).first()
   caracs = engine.execute('SELECT * FROM Carac WHERE id = ' + id_perso).first()
-  clients[client['id']].append(persoJoueur)
-  clients[client['id']].append(caracs)
+  clients[client['id']].append(prepareJson(persoJoueur))
+  clients[client['id']].append(prepareJson(caracs))
   #print(clients[client['id']][3]['AD'])
 
 def list_player(client, server, id_room):
@@ -150,11 +167,28 @@ def list_player(client, server, id_room):
     if(i['id'] == id_room):
       for x in i['clientsID']:
         print(x)
-        personnage = prepareJson(clients[client['id']][2])
-        carac = prepareJson(clients[client['id']][3])
-        tab.append({'type' : 'list_player', 'carac' : carac, 'perso' : personnage})
+        personnage = clients[x][2]
+        carac = clients[x][3]
+        print(carac)
+        tab.append({'type' : 'list_player', 'carac' : carac, 'perso' : personnage, 'id' : x})
         #count = count + 1
   message_to_room(client, server, json.dumps(tab))
+
+def MJ_TOOL(client, server, id_room):
+  if(isGameMaster(client, server) == 0):
+    return
+
+  tab = []
+  count = 0
+  for i in rooms:
+    if(i['id'] == id_room):
+      for x in i['clientsID']:
+        print(x)
+        personnage = clients[x][2]
+        carac = clients[x][3]
+        tab.append({'carac' : carac, 'perso' : personnage, 'id' : x})
+        #count = count + 1
+  server.send_message(client, json.dumps(tab))
 
 def prepareJson(array):
   data = []
@@ -164,6 +198,43 @@ def prepareJson(array):
     count = count + 1
 
   return data
+
+
+def isGameMaster(client, server):
+  room_id = get_client_room(client)
+  print(rooms)
+  for i in rooms:
+    if(i['id'] == room_id):
+      if(client['id'] == i['mj']):
+        server.send_message(client, json.dumps({'type' : 'isGameMaster', 'value' : 'true'}))
+        return 1
+
+  server.send_message(client, json.dumps({'type' : 'isGameMaster', 'value' : 'false'}))
+  return 0
+
+def is_json(message):
+  if(message[0] == '[' or message[0] == '{'):
+    return 1
+  return 0
+
+def change_stats(client, data):
+  id_client = int(data['id_client'])
+  clients[id_client][3][0] = data['cou']
+  clients[id_client][3][1] = data['cha']
+  clients[id_client][3][2] = data['ad']
+  clients[id_client][3][3] = data['intel']
+  clients[id_client][3][4] = data['fo']
+  clients[id_client][3][5] = data['pvmax']
+  clients[id_client][3][6] = data['pv']
+  clients[id_client][3][7] = data['pmmax']
+  clients[id_client][3][8] = data['pm']
+  clients[id_client][3][9] = data['att']
+  clients[id_client][3][10] = data['prd']
+  clients[id_client][3][11] = data['destin']
+  clients[id_client][3][12] = data['po']
+  print('before')
+  print(clients[id_client][3][0])
+  list_player(client, server, clients[client['id']][1])
 
 
 PORT=13254

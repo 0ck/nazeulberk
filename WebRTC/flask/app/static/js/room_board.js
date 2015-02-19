@@ -37,7 +37,7 @@ $(document).ready(function(){
     var name = $('#room_name');
     
     console.log(jsonList);
-    $('tbody').html();
+    $('tbody').html('');
     json.forEach(function(entry){
       var name = entry.name;
       var id = entry.id;

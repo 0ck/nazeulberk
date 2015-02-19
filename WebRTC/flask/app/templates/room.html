@@ -4,88 +4,20 @@
 <script src="{{ url_for('static', filename='js/room.js') }}"></script>
 <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
 <input type="hidden" id="room_id" value="{{room_id}}" />
+<input type="hidden" id="id_perso" value="{{persoJoueur.id}}"> 
 <div class="container">
         <div class="col-lg-12">
             <div class="col-lg-3">
-                <h2>{{persoJoueur.name}}</h2>
-                <input type="hidden" id="persoID" value="{{persoJoueur.id}}" />
-                  <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                  Détail sur le personnage
-                </button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Détail des statistiques de {{persoJoueur.name}}</h4>
-                      </div>
-                      <div class="modal-body">
-                        <ul>
-                          <li></span>Cou : {{ caracs.COU }}</li>
-                          <li></span>Cha : {{ caracs.CHA }}</li>
-                          <li></span>Ad : {{ caracs.AD }}</li>
-                          <li></span>Int : {{ caracs.INT }}</li>
-                          <li></span>Fo : {{ caracs.FO }}</li>
-                          <li></span>PV max : {{ caracs.PV_max }}</li>
-                          <li></span>Pv : {{ caracs.PV }}</li>
-                          <li></span>PM max : {{ caracs.PM_max }}</li>
-                          <li></span>PM : {{ caracs.PM }}</li>
-                          <li></span>Att : {{ caracs.AT }}</li>
-                          <li></span>Prd : {{ caracs.PRD }}</li>
-                          <li></span>Point du destin : {{ caracs.PointDestin }}</li>
-                          <li></span>Pieces d'or : {{ caracs.PO }}</li>
-                        </ul>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <h3>Level : {{persoJoueur.level}}</h3>
-                <h3>Exp : {{persoJoueur.exp}}</h3>
-                
-                <h3>Visio</h3>
-                <div class="visioconf">
-                    <div class="localvideos">
-                        <video id="local" autoplay muted width="100%"></video>
-                    </div>
-                    <div >
-                        <button class="btn btn-primary form-control" id="video_call">Activer la vidéo</button>
-                    </div>
-                </div>
-                <h4>Progression : </h4>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="75"
-                      aria-valuemin="0" aria-valuemax="100" style="width:75%; background-color: green">
-                        <span >156 / 200 EXP</span>
-                    </div>
-                </div>
-                
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                      aria-valuemin="0" aria-valuemax="100" style="width:70%; background-color: red">
-                        <span >20/30 HP</span>
-                    </div>
-                </div>
-                <h3>Points de compétence </h3>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="50"
-                      aria-valuemin="0" aria-valuemax="100" style="width:50%; background-color: blue">
-                        <span >15 / 30 SP</span>
-                    </div>
-                </div>
+              <div class="playerlist_editor_container">
+                Chargement/attente de joueurs ...
                 
             </div>
+        </div>
             <div class="col-lg-6">
                 <center><h2>Plateau de jeu N° {{room_id}}</h2></center>
-                <br /> <br /> <br /> <br /> <br /> <br /> <br />
+                <br /> <br /> <br /> <br />
 
-                <div class="chatbox_container" id="chatbox_container" style="overflow : auto;">
+                <div class="chatbox_container" id="chatbox_container" style="overflow : auto;height: 350px">
                     <p><span style="color: red;">Maitre du jeu</span>  Btx dit : Bonjour et bienvenue sur la room {{room_id}}, je serais le maitre du jeu de cette partie !</p>
                     <p><span style="color: blue">Mage</span> Dayknor rejoint la partie {{room_id}} !</p>
                     <p><span style="color: blue">Mage</span> Dayknor dit -> : Salut all</p>
@@ -102,7 +34,7 @@
                 </div>
                 
                 <div class="col-lg-12 playerlist_container" style="margin-top : 10px">
-                  
+                  Chargement/attentes de joueur
                 </div>
 
                   
